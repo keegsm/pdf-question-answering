@@ -7,7 +7,3 @@ services:
     envVars:
       - key: PORT
         value: 8000
-    disk:
-      name: pdf-storage
-      mountPath: /uploads
-      sizeGB: 1
