@@ -346,13 +346,39 @@ def main():
                                 st.divider()
     
     # Handle demo question
-    demo_input = ""
     if hasattr(st.session_state, 'demo_question'):
-        demo_input = st.session_state.demo_question
+        # Auto-submit demo question
+        prompt = st.session_state.demo_question
         delattr(st.session_state, 'demo_question')
+        
+        # Add user message
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        
+        # Generate response (same logic as below)
+        if not st.session_state.documents:
+            response = "Please upload some PDF documents first before asking questions."
+            st.session_state.messages.append({"role": "assistant", "content": response})
+        else:
+            with st.spinner("Searching documents and generating answer..."):
+                search_results = search_documents(prompt, max_results=5)
+                
+                if search_results:
+                    context = "\n\n".join([f"From {result['source']}:\n{result['text']}" 
+                                         for result in search_results[:3]])
+                    response = get_llm_response(prompt, context)
+                    st.session_state.messages.append({
+                        "role": "assistant", 
+                        "content": response,
+                        "sources": search_results
+                    })
+                else:
+                    response = "I couldn't find relevant information in your uploaded documents to answer that question."
+                    st.session_state.messages.append({"role": "assistant", "content": response})
+        
+        st.rerun()
     
     # Chat input
-    if prompt := st.chat_input("Ask a question about your documents...", value=demo_input):
+    if prompt := st.chat_input("Ask a question about your documents..."):
         # Add user message
         st.session_state.messages.append({"role": "user", "content": prompt})
         
