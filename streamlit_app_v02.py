@@ -349,6 +349,31 @@ def main():
     st.title(f"{config['app_info']['icon']} {config['app_info']['title']}")
     st.markdown(config["app_info"]["description"])
     
+    # Role-based quick access
+    with st.expander("🎯 Quick Start by Role", expanded=False):
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            st.markdown("**👩‍⚕️ Medical Staff**")
+            for question in config.get("role_based_examples", {}).get("medical", []):
+                if st.button(question, key=f"medical_{question}", use_container_width=True):
+                    st.session_state.quick_question = question
+                    st.rerun()
+        
+        with col2:
+            st.markdown("**👨‍💼 Administrators**")
+            for question in config.get("role_based_examples", {}).get("admin", []):
+                if st.button(question, key=f"admin_{question}", use_container_width=True):
+                    st.session_state.quick_question = question
+                    st.rerun()
+        
+        with col3:
+            st.markdown("**🔧 IT Support**")
+            for question in config.get("role_based_examples", {}).get("it", []):
+                if st.button(question, key=f"it_{question}", use_container_width=True):
+                    st.session_state.quick_question = question
+                    st.rerun()
+    
     # Auto-load knowledge base if not already loaded
     if not st.session_state.knowledge_base_loaded:
         if not load_knowledge_base():
@@ -364,7 +389,7 @@ def main():
     col1, col2 = st.columns([4, 1])
     
     with col1:
-        st.header("💬 Ask about InteleOrchestrator")
+        st.header("💬 InteleOrchestrator Support")
     
     with col2:
         if st.button("🗑️ Clear Chat"):
@@ -401,8 +426,47 @@ def main():
                             if i < len(message["sources"]) - 1:
                                 st.divider()
     
+    # Handle quick questions
+    if hasattr(st.session_state, 'quick_question'):
+        prompt = st.session_state.quick_question
+        delattr(st.session_state, 'quick_question')
+        
+        # Add user message
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        
+        # Generate response
+        with st.spinner("Searching InteleOrchestrator documentation and generating answer..."):
+            # Search for relevant chunks
+            search_results = search_documents(prompt, max_results=5)
+            
+            if search_results:
+                # Combine context from top results
+                context = "\n\n".join([f"From {result['source']}:\n{result['text']}" 
+                                     for result in search_results[:3]])
+                
+                # Get LLM response
+                response_data = get_llm_response(prompt, context)
+                
+                if response_data:
+                    # Add to message history
+                    st.session_state.messages.append({
+                        "role": "assistant", 
+                        "content": response_data["content"],
+                        "sources": search_results,
+                        "metadata": response_data
+                    })
+                    
+                    # Update usage stats
+                    st.session_state.usage_stats['requests_today'] += 1
+                    st.session_state.usage_stats['total_requests'] += 1
+            else:
+                response = "I couldn't find relevant information in the InteleOrchestrator documentation to answer that question. Please try rephrasing your question or contact technical support."
+                st.session_state.messages.append({"role": "assistant", "content": response})
+        
+        st.rerun()
+    
     # Chat input
-    if prompt := st.chat_input("Ask a question about InteleOrchestrator..."):
+    if prompt := st.chat_input("Ask about workflows, administration, troubleshooting, or training..."):
         # Add user message
         st.session_state.messages.append({"role": "user", "content": prompt})
         
@@ -439,16 +503,22 @@ def main():
 
     # Footer info
     st.markdown("---")
-    col1, col2, col3, col4 = st.columns(4)
+    
+    # Support information
+    col1, col2 = st.columns([3, 1])
     with col1:
-        st.metric("Documents Loaded", len(glob.glob(os.path.join(config["knowledge_base"]["documents_folder"], "*"))))
+        st.markdown("**📋 Support Escalation:**")
+        st.markdown("• **Complex technical issues** → Contact IT Support or system vendor")
+        st.markdown("• **Clinical workflow questions** → Refer to department training coordinator")
+        st.markdown("• **Urgent system problems** → Follow your organization's emergency IT procedures")
+    
     with col2:
-        st.metric("Text Chunks", len(st.session_state.document_chunks))
-    with col3:
-        st.metric("Chat Messages", len(st.session_state.messages))
-    with col4:
-        status = "🟢" if is_model_available() else "🔴"
-        st.metric("AI Status", status)
+        with st.expander("📊 System Stats"):
+            st.metric("Documents", len(glob.glob(os.path.join(config["knowledge_base"]["documents_folder"], "*"))))
+            st.metric("Text Chunks", len(st.session_state.document_chunks))
+            st.metric("Questions Asked", len([m for m in st.session_state.messages if m["role"] == "user"]))
+            status = "🟢 Ready" if is_model_available() else "🔴 API Issue"
+            st.caption(f"**Status:** {status}")
 
 if __name__ == "__main__":
     main()
