@@ -1,0 +1,33 @@
+{
+  "demo_questions": [
+    {
+      "id": 1,
+      "question": "How do I get started with this software?",
+      "category": "Getting Started"
+    },
+    {
+      "id": 2,
+      "question": "What are the system requirements?",
+      "category": "Technical"
+    },
+    {
+      "id": 3,
+      "question": "How do I troubleshoot common issues?",
+      "category": "Troubleshooting"
+    },
+    {
+      "id": 4,
+      "question": "Where can I find the installation guide?",
+      "category": "Installation"
+    },
+    {
+      "id": 5,
+      "question": "What features are available in the latest version?",
+      "category": "Features"
+    }
+  ],
+  "sample_responses": {
+    "getting_started": "To get started, please refer to the Quick Start Guide in Chapter 1 of the user manual. The basic steps include: 1) Installation, 2) Initial configuration, 3) First-time setup wizard.",
+    "fallback": "I don't have enough information in the uploaded documents to answer that question accurately. Please upload relevant user guides or documentation."
+  }
+}

@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: pdf-qa-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: PORT
+        value: 8000
+    disk:
+      name: pdf-storage
+      mountPath: /uploads
+      sizeGB: 1

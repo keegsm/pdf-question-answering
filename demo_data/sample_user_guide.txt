@@ -1,0 +1,166 @@
+# Sample User Guide - PDF Question Answering System
+
+## Getting Started
+
+Welcome to the PDF Question Answering System! This powerful tool allows you to upload PDF documents and ask questions about their content using advanced AI technology.
+
+### System Requirements
+
+- Modern web browser (Chrome, Firefox, Safari, Edge)
+- Internet connection for cloud LLM services (optional)
+- Local Ollama installation for offline operation (optional)
+- Minimum 4GB RAM for optimal performance
+- Supported file formats: PDF only
+
+### Installation Guide
+
+1. **Download the Application**
+   - Clone the repository or download the ZIP file
+   - Extract to your desired directory
+
+2. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run the Application**
+   ```bash
+   python main.py
+   ```
+   
+4. **Access the Web Interface**
+   - Open your browser and navigate to http://localhost:8000
+   - The application will automatically start and be ready to use
+
+## Features Overview
+
+### Document Upload
+- **Drag and Drop**: Simply drag PDF files onto the upload area
+- **Browse Files**: Click the upload area to select files manually
+- **Multiple Files**: Upload multiple PDFs at once
+- **File Size Limit**: Maximum 10MB per file
+- **Text Extraction**: Automatic text extraction from all PDF pages
+
+### Question Answering
+- **Natural Language Questions**: Ask questions in plain English
+- **Context-Aware Responses**: Answers based on uploaded document content
+- **Source Attribution**: See which documents were used to generate answers
+- **Confidence Scoring**: Reliability indicator for each response
+
+### AI Integration
+- **Multiple LLM Backends**: Support for Ollama, Groq, and OpenAI
+- **Automatic Fallback**: Switches between available services
+- **Local Processing**: Works completely offline with Ollama
+- **Cloud Options**: Enhanced capabilities with cloud services
+
+## How to Use
+
+### Step 1: Upload Documents
+1. Click on the upload area or drag PDF files
+2. Wait for processing to complete
+3. View uploaded documents in the left panel
+
+### Step 2: Ask Questions
+1. Type your question in the chat input
+2. Press Enter or click the send button
+3. View the AI-generated response with sources
+
+### Step 3: Manage Documents
+1. View all uploaded documents
+2. Delete documents you no longer need
+3. Upload additional documents anytime
+
+## Troubleshooting
+
+### Common Issues
+
+**Problem**: "No LLM available" status
+**Solution**: 
+- Install Ollama locally for free operation
+- Configure API keys for cloud services
+- Check internet connection for cloud LLMs
+
+**Problem**: PDF text extraction fails
+**Solution**:
+- Ensure PDF contains searchable text (not just images)
+- Try a different PDF file
+- Check file size is under 10MB limit
+
+**Problem**: Slow response times
+**Solution**:
+- Use local Ollama for faster responses
+- Reduce number of uploaded documents
+- Try smaller LLM models
+
+**Problem**: Inaccurate answers
+**Solution**:
+- Upload more relevant documents
+- Ask more specific questions
+- Check document quality and text clarity
+
+### Performance Tips
+
+1. **Optimize Document Quality**
+   - Use PDFs with clear, searchable text
+   - Avoid image-only PDFs
+   - Remove unnecessary pages
+
+2. **Question Formulation**
+   - Be specific and clear
+   - Reference document sections when possible
+   - Ask one question at a time
+
+3. **System Performance**
+   - Use SSD storage for better performance
+   - Ensure adequate RAM (8GB+ recommended)
+   - Close unnecessary applications
+
+## Advanced Configuration
+
+### Environment Variables
+- `GROQ_API_KEY`: Your Groq API key for cloud processing
+- `OPENAI_API_KEY`: Your OpenAI API key for GPT models
+- `OLLAMA_HOST`: Custom Ollama server address (default: localhost:11434)
+
+### Local LLM Setup (Ollama)
+1. Install Ollama from https://ollama.ai
+2. Pull a model: `ollama pull llama3.1:8b`
+3. Start Ollama service
+4. Application will automatically detect and use local models
+
+### Cloud LLM Setup
+1. **Groq Setup**: 
+   - Get free API key from https://groq.com
+   - Set GROQ_API_KEY environment variable
+   
+2. **OpenAI Setup**:
+   - Get API key from https://openai.com
+   - Set OPENAI_API_KEY environment variable
+
+## Security and Privacy
+
+### Data Protection
+- All documents are stored locally by default
+- No data sent to external services without explicit API configuration
+- Vector embeddings generated locally using sentence-transformers
+- Chat history not persistent across sessions
+
+### API Key Security
+- Store API keys as environment variables
+- Never commit API keys to version control
+- Use least-privilege API key permissions
+- Regularly rotate API keys
+
+## Support and Documentation
+
+### Getting Help
+- Check the troubleshooting section above
+- Review system health status in the application
+- Ensure all dependencies are properly installed
+
+### Demo Mode
+- Use provided demo questions to test functionality
+- Upload sample documents for testing
+- Try different question types and formats
+
+This user guide provides comprehensive information about using the PDF Question Answering System effectively. For additional support or feature requests, please refer to the project documentation or contact the development team.
