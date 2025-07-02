@@ -36,7 +36,9 @@ vector_db/
 
 # Uploads
 uploads/
+# Exclude PDFs except knowledge base
 *.pdf
+!knowledge_base/*.pdf
 
 # OS files
 .DS_Store
