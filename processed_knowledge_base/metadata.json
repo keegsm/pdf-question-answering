@@ -1,0 +1,18 @@
+{
+  "source_directory": "knowledge_base",
+  "processed_at": "2025-07-02T21:01:02.503635",
+  "processing_time_seconds": 19.81,
+  "total_documents": 7,
+  "total_chunks": 1084,
+  "vectorizer_features": 1000,
+  "tfidf_matrix_shape": [
+    1084,
+    1000
+  ],
+  "files_created": [
+    "processed_chunks.json",
+    "tfidf_vectorizer.pkl",
+    "tfidf_matrix.npz",
+    "metadata.json"
+  ]
+}
