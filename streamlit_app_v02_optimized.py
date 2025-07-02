@@ -245,14 +245,20 @@ def main():
     # Initialize session state
     init_session_state()
     
-    # Load knowledge base (cached)
+    # Load knowledge base (cached) with detailed error handling
     with st.spinner("⚡ Loading InteleOrchestrator Support Hub..."):
-        kb_data = load_processed_knowledge_base()
-        st.session_state.kb_loaded_at = kb_data['loaded_at']
-    
-    # Success message
-    if st.session_state.kb_loaded_at:
-        st.success("✅ **Knowledge base loaded instantly!** Ready for questions.")
+        try:
+            kb_data = load_processed_knowledge_base()
+            if kb_data is None:
+                st.error("🚨 **CRITICAL ERROR:** Processed knowledge base returned None")
+                st.error("This should not happen if files exist. Check app logs.")
+                st.stop()
+            st.session_state.kb_loaded_at = kb_data['loaded_at']
+            st.success("✅ **Knowledge base loaded instantly!** Ready for questions.")
+        except Exception as e:
+            st.error(f"🚨 **FATAL ERROR loading knowledge base:** {str(e)}")
+            st.error("The app cannot continue without the processed knowledge base.")
+            st.stop()
     
     # App header
     st.title(f"{config['app_info']['icon']} {config['app_info']['title']}")
