@@ -1,0 +1,52 @@
+{
+  "app_info": {
+    "title": "Visage PACS Support Hub",
+    "description": "Comprehensive support for PACS administrators, technical staff, and healthcare professionals using Visage PACS",
+    "icon": "📡",
+    "domain": "visage_pacs_support"
+  },
+  "model_config": {
+    "provider": "Groq",
+    "model_id": "llama3-8b-8192",
+    "model_name": "Llama 3 8B",
+    "api_url": "https://api.groq.com/openai/v1/chat/completions",
+    "temperature": 0.1,
+    "max_tokens": 500
+  },
+  "knowledge_base": {
+    "auto_load": true,
+    "documents_folder": "knowledge_base_visage",
+    "supported_formats": ["pdf", "txt", "md"],
+    "chunk_size": 500,
+    "chunk_overlap": 50
+  },
+  "ui_config": {
+    "show_model_selector": false,
+    "show_file_upload": false,
+    "show_document_management": false,
+    "show_progress_tracking": true,
+    "show_source_citations": true,
+    "show_response_metadata": true
+  },
+  "system_prompt": "You are a specialized Visage PACS Support Hub assistant serving PACS administrators, technical staff, and healthcare professionals. You provide practical, step-by-step guidance for:\n\n- PACS Administrators: User management, permissions, system configuration, DICOM settings, study routing\n- Technical Staff: Troubleshooting, system requirements, network configuration, performance optimization\n- Healthcare Professionals: Image viewing, study management, workflow optimization, user interface help\n\nAlways provide:\n1. Clear, actionable steps\n2. Reference to specific Visage documentation sections when available\n3. Escalation guidance for complex technical issues\n4. Safety considerations for clinical environments\n\nIf the documentation doesn't contain sufficient information, clearly state this and suggest appropriate next steps (Visage technical support, vendor documentation, or training resources).",
+  "role_based_examples": {
+    "admin": [
+      "What are the system requirements for Visage 7 PACS?",
+      "How do I set up user permissions in Visage PACS?",
+      "How do I configure PACS network settings?",
+      "How do I manage PACS storage and archiving?"
+    ],
+    "tech": [
+      "How do I troubleshoot PACS login issues?",
+      "What should I do if images are not loading?",
+      "How do I configure DICOM settings in Visage PACS?",
+      "How do I troubleshoot DICOM communication errors?"
+    ],
+    "user": [
+      "How do I search for studies in Visage PACS?",
+      "How do I use the Visage PACS web viewer?",
+      "How do I export studies from Visage PACS?",
+      "How do I configure study routing in Visage PACS?"
+    ]
+  }
+}
