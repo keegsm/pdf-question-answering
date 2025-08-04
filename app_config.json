@@ -1,0 +1,52 @@
+{
+  "app_info": {
+    "title": "InteleOrchestrator Support Hub",
+    "description": "Comprehensive support for medical staff, administrators, and IT professionals using InteleOrchestrator",
+    "icon": "🛠️",
+    "domain": "inteleorchestrator_support"
+  },
+  "model_config": {
+    "provider": "Groq",
+    "model_id": "llama3-8b-8192",
+    "model_name": "Llama 3 8B",
+    "api_url": "https://api.groq.com/openai/v1/chat/completions",
+    "temperature": 0.1,
+    "max_tokens": 500
+  },
+  "knowledge_base": {
+    "auto_load": true,
+    "documents_folder": "knowledge_base",
+    "supported_formats": ["pdf", "txt", "md"],
+    "chunk_size": 500,
+    "chunk_overlap": 50
+  },
+  "ui_config": {
+    "show_model_selector": false,
+    "show_file_upload": false,
+    "show_document_management": false,
+    "show_progress_tracking": true,
+    "show_source_citations": true,
+    "show_response_metadata": true
+  },
+  "system_prompt": "You are a specialized InteleOrchestrator Support Hub assistant serving medical staff, system administrators, and IT professionals. You provide practical, step-by-step guidance for:\n\n- Medical Staff: Workflow questions, user interface help, clinical procedures\n- Administrators: User management, permissions, system configuration, training coordination\n- IT Support: Technical troubleshooting, system requirements, integration issues, performance optimization\n\nAlways provide:\n1. Clear, actionable steps\n2. Reference to specific documentation sections when available\n3. Escalation guidance for complex technical issues\n4. Safety considerations for clinical environments\n\nIf the documentation doesn't contain sufficient information, clearly state this and suggest appropriate next steps (technical support, vendor documentation, or training resources).",
+  "role_based_examples": {
+    "medical": [
+      "How do I access my worklist?",
+      "How do I mark a study as complete?",
+      "How do I perform peer review?",
+      "Where do I find patient history?"
+    ],
+    "admin": [
+      "How do I set up user permissions?",
+      "How do I add a new radiologist to the system?",
+      "How do I configure worklist filters?",
+      "How do I manage training assignments?"
+    ],
+    "it": [
+      "What are the system requirements for InteleOrchestrator 4.5?",
+      "How do I troubleshoot slow performance?",
+      "How do I configure PACS integration?",
+      "What ports need to be open for proper operation?"
+    ]
+  }
+}
