@@ -1,0 +1,61 @@
+{
+  "demo_questions": [
+    "What are the system requirements for Visage 7 PACS?",
+    "How do I set up user permissions in Visage PACS?",
+    "How do I configure DICOM settings in Visage PACS?",
+    "How do I search for studies in Visage PACS?",
+    "How do I use the Visage PACS web viewer?",
+    "What should I do if images are not loading in PACS?",
+    "How do I export studies from Visage PACS?",
+    "How do I configure study routing in Visage PACS?",
+    "How do I troubleshoot PACS login issues?",
+    "How do I create new user accounts in Visage PACS?",
+    "How do I configure image compression settings?",
+    "How do I set up PACS workstations?",
+    "How do I manage PACS storage and archiving?",
+    "How do I configure PACS network settings?",
+    "How do I troubleshoot DICOM communication errors?"
+  ],
+  "sample_responses": {
+    "user_permissions": "User permissions in Visage are managed through the administrative interface where you can assign different roles and access levels to users based on their responsibilities.",
+    "system_requirements": "Visage 7 requires specific hardware and software configurations including adequate RAM, storage, and network bandwidth for optimal performance.",
+    "pacs_integration": "PACS integration involves configuring DICOM settings, network connections, and ensuring proper communication protocols between systems.",
+    "database_backup": "Database backups in Visage RIS should be performed regularly using the built-in backup utilities or automated scheduling features.",
+    "pacs_vs_ris": "Visage PACS handles image storage and viewing while Visage RIS manages patient information, scheduling, and workflow processes.",
+    "login_troubleshooting": "Login issues can be resolved by checking user credentials, network connectivity, and system status indicators."
+  },
+  "categories": {
+    "PACS User Management": [
+      "How do I set up user permissions in Visage PACS?",
+      "How do I create new user accounts in Visage PACS?",
+      "How do I set up PACS workstations?"
+    ],
+    "PACS System Administration": [
+      "What are the system requirements for Visage 7 PACS?",
+      "How do I configure PACS network settings?",
+      "How do I manage PACS storage and archiving?"
+    ],
+    "PACS Troubleshooting": [
+      "How do I troubleshoot PACS login issues?",
+      "What should I do if images are not loading in PACS?",
+      "How do I troubleshoot DICOM communication errors?"
+    ],
+    "DICOM & Configuration": [
+      "How do I configure DICOM settings in Visage PACS?",
+      "How do I configure study routing in Visage PACS?",
+      "How do I configure image compression settings?"
+    ],
+    "PACS Usage": [
+      "How do I search for studies in Visage PACS?",
+      "How do I export studies from Visage PACS?",
+      "How do I use the Visage PACS web viewer?"
+    ]
+  },
+  "metadata": {
+    "product": "Visage PACS/RIS",
+    "version": "1.0.0",
+    "last_updated": "2025-01-04",
+    "total_questions": 15,
+    "categories_count": 5
+  }
+}
