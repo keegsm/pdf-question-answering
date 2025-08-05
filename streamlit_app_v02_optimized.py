@@ -9,6 +9,8 @@ import os
 import json
 import pickle
 import time
+import glob
+import re
 from datetime import datetime
 from typing import Dict, List, Optional
 import numpy as np
@@ -16,6 +18,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy.sparse import csr_matrix
 import requests
+import pdfplumber
 
 # Load app configuration
 @st.cache_data
@@ -129,32 +132,156 @@ def is_model_available() -> bool:
     """Check if the configured model is available"""
     return bool(get_api_key())
 
-def search_documents(query: str, kb_data: dict, max_results: int = 5) -> List[Dict]:
-    """Search for relevant document chunks using pre-loaded TF-IDF"""
+@st.cache_data
+def extract_text_from_pdf_live(file_path: str) -> Optional[str]:
+    """Extract text from PDF file for live processing"""
+    text = ""
+    try:
+        with pdfplumber.open(file_path) as pdf:
+            for page in pdf.pages:
+                page_text = page.extract_text()
+                if page_text:
+                    text += page_text + "\n\n"
+    except Exception as e:
+        st.warning(f"Error reading {os.path.basename(file_path)}: {str(e)}")
+        return None
+    return text.strip()
+
+def chunk_text_live(text: str, chunk_size: int = 500, overlap: int = 50) -> List[str]:
+    """Split text into overlapping chunks for live processing"""
+    # Clean text
+    text = re.sub(r'\s+', ' ', text).strip()
+    
+    sentences = text.split('.')
+    chunks = []
+    current_chunk = ""
+    
+    for sentence in sentences:
+        sentence = sentence.strip()
+        if not sentence:
+            continue
+            
+        if len(current_chunk) + len(sentence) + 1 > chunk_size and current_chunk:
+            chunks.append(current_chunk.strip())
+            # Start new chunk with overlap
+            words = current_chunk.split()
+            overlap_words = words[-overlap//10:] if len(words) > overlap//10 else words
+            current_chunk = ' '.join(overlap_words) + '. ' + sentence
+        else:
+            current_chunk = current_chunk + '. ' + sentence if current_chunk else sentence
+    
+    if current_chunk.strip():
+        chunks.append(current_chunk.strip())
+    
+    return [chunk for chunk in chunks if len(chunk.strip()) > 50]
+
+def search_live_pdfs(query: str, knowledge_base_dir: str = "knowledge_base", max_results: int = 3) -> List[Dict]:
+    """Search original PDFs for enhanced accuracy"""
+    if not os.path.exists(knowledge_base_dir):
+        return []
+    
+    pdf_files = glob.glob(os.path.join(knowledge_base_dir, "**/*.pdf"), recursive=True)
+    live_results = []
+    
+    # Create a simple TF-IDF for live search
+    all_chunks = []
+    chunk_metadata = []
+    
+    for pdf_file in pdf_files:
+        text = extract_text_from_pdf_live(pdf_file)
+        if text:
+            chunks = chunk_text_live(text)
+            for i, chunk in enumerate(chunks):
+                all_chunks.append(chunk)
+                chunk_metadata.append({
+                    'filename': os.path.basename(pdf_file),
+                    'chunk_index': i,
+                    'text': chunk
+                })
+    
+    if not all_chunks:
+        return []
+    
+    try:
+        # Quick TF-IDF search on live chunks
+        vectorizer = TfidfVectorizer(max_features=500, stop_words='english', ngram_range=(1, 2))
+        tfidf_matrix = vectorizer.fit_transform(all_chunks)
+        query_vector = vectorizer.transform([query])
+        similarities = cosine_similarity(query_vector, tfidf_matrix).flatten()
+        
+        # Get top results
+        top_indices = similarities.argsort()[-max_results:][::-1]
+        
+        for idx in top_indices:
+            if similarities[idx] > 0.1:
+                chunk_info = chunk_metadata[idx]
+                live_results.append({
+                    'text': chunk_info['text'],
+                    'source': chunk_info['filename'],
+                    'similarity': float(similarities[idx]),
+                    'chunk_index': chunk_info['chunk_index'],
+                    'source_type': 'live_pdf'
+                })
+    except Exception as e:
+        st.warning(f"Live PDF search error: {str(e)}")
+    
+    return live_results
+
+def search_documents(query: str, kb_data: dict, max_results: int = 5, use_hybrid: bool = True, confidence_threshold: float = 0.3) -> List[Dict]:
+    """Hybrid search: Fast preprocessed + Enhanced live PDF search"""
     if not kb_data['chunks'] or kb_data['vectorizer'] is None:
         return []
     
-    # Transform query using pre-loaded vectorizer
+    # STEP 1: Fast preprocessed search
     query_vector = kb_data['vectorizer'].transform([query])
-    
-    # Calculate similarities using pre-computed matrix
     similarities = cosine_similarity(query_vector, kb_data['tfidf_matrix']).flatten()
-    
-    # Get top results
     top_indices = similarities.argsort()[-max_results:][::-1]
     
-    results = []
+    preprocessed_results = []
+    max_similarity = 0
+    
     for idx in top_indices:
-        if similarities[idx] > 0.1:  # Minimum similarity threshold
+        if similarities[idx] > 0.1:
             chunk = kb_data['chunks'][idx]
-            results.append({
+            similarity = float(similarities[idx])
+            max_similarity = max(max_similarity, similarity)
+            preprocessed_results.append({
                 'text': chunk['text'],
                 'source': chunk['filename'],
-                'similarity': float(similarities[idx]),
-                'chunk_index': chunk['chunk_index']
+                'similarity': similarity,
+                'chunk_index': chunk['chunk_index'],
+                'source_type': 'preprocessed'
             })
     
-    return results
+    # STEP 2: Enhanced search if confidence is low or user wants hybrid
+    if use_hybrid and (max_similarity < confidence_threshold or len(preprocessed_results) < 3):
+        with st.spinner("🔍 Enhancing search with live PDF analysis..."):
+            live_results = search_live_pdfs(query, max_results=3)
+            
+            # Combine and deduplicate results
+            all_results = preprocessed_results + live_results
+            
+            # Remove duplicates based on text similarity
+            unique_results = []
+            for result in all_results:
+                is_duplicate = False
+                for existing in unique_results:
+                    if (result['source'] == existing['source'] and 
+                        abs(result['chunk_index'] - existing['chunk_index']) <= 1):
+                        # Keep the higher similarity result
+                        if result['similarity'] > existing['similarity']:
+                            unique_results.remove(existing)
+                        else:
+                            is_duplicate = True
+                        break
+                if not is_duplicate:
+                    unique_results.append(result)
+            
+            # Sort by similarity and return top results
+            unique_results.sort(key=lambda x: x['similarity'], reverse=True)
+            return unique_results[:max_results]
+    
+    return preprocessed_results
 
 def get_llm_response(prompt: str, context: str) -> Optional[Dict]:
     """Get LLM response using configured model"""
@@ -223,23 +350,51 @@ def get_llm_response(prompt: str, context: str) -> Optional[Dict]:
         return None
 
 def display_knowledge_base_info(kb_data: dict):
-    """Display knowledge base loading status"""
-    with st.expander("📚 Knowledge Base Status", expanded=False):
-        col1, col2 = st.columns(2)
+    """Display knowledge base loading status with hybrid search info"""
+    with st.expander("📚 Hybrid Knowledge Base Status", expanded=False):
+        col1, col2, col3 = st.columns(3)
         
         with col1:
-            st.metric("Documents Loaded", len(kb_data['documents']))
-            st.metric("Text Chunks", len(kb_data['chunks']))
+            st.metric("📋 Preprocessed Docs", len(kb_data['documents']))
+            st.metric("⚡ Fast Chunks", len(kb_data['chunks']))
             
         with col2:
-            st.metric("Search Index Size", f"{kb_data['tfidf_matrix'].shape[0]}×{kb_data['tfidf_matrix'].shape[1]}")
+            # Check live PDF availability
+            live_pdf_dir = "knowledge_base"
+            live_pdfs = []
+            if os.path.exists(live_pdf_dir):
+                live_pdfs = glob.glob(os.path.join(live_pdf_dir, "**/*.pdf"), recursive=True)
+            st.metric("📄 Live PDFs", len(live_pdfs))
+            st.metric("🔍 Search Index", f"{kb_data['tfidf_matrix'].shape[0]}×{kb_data['tfidf_matrix'].shape[1]}")
+            
+        with col3:
             processed_time = datetime.fromisoformat(kb_data['metadata']['processed_at'])
-            st.caption(f"**Processed:** {processed_time.strftime('%Y-%m-%d %H:%M')}")
+            st.caption(f"**Preprocessed:** {processed_time.strftime('%Y-%m-%d %H:%M')}")
+            
+            # Search mode indicator
+            if len(live_pdfs) > 0:
+                st.success("🔄 **Hybrid Mode Active**")
+                st.caption("Fast + Enhanced search")
+            else:
+                st.info("⚡ **Fast Mode Only**")
+                st.caption("Preprocessed search")
         
-        # Document list
-        st.markdown("**📄 Available Documents:**")
-        for doc in kb_data['documents']:
-            st.markdown(f"• **{doc['filename']}** ({doc['chunk_count']} chunks)")
+        # Document comparison
+        st.markdown("**📄 Document Coverage:**")
+        preprocessed_docs = {doc['filename'] for doc in kb_data['documents']}
+        live_docs = {os.path.basename(pdf) for pdf in live_pdfs}
+        
+        all_docs = preprocessed_docs.union(live_docs)
+        for doc in sorted(all_docs):
+            icons = []
+            if doc in preprocessed_docs:
+                icons.append("⚡")
+            if doc in live_docs:
+                icons.append("📄")
+            st.markdown(f"• {''.join(icons)} **{doc}**")
+        
+        if len(live_pdfs) > 0:
+            st.info("💡 **Hybrid Search**: Starts with fast preprocessed search, enhances with live PDF analysis when needed for better accuracy.")
 
 def main():
     # Initialize session state
@@ -298,6 +453,16 @@ def main():
         st.info(f"Add `{config['model_config']['provider'].upper()}_API_KEY` to your Streamlit secrets.")
         st.stop()
     
+    # Search mode controls
+    with st.expander("🔧 Search Settings", expanded=False):
+        col1, col2 = st.columns(2)
+        with col1:
+            use_hybrid = st.checkbox("🔄 Enhanced Search", value=True, 
+                                   help="Uses live PDF analysis for better accuracy when confidence is low")
+        with col2:
+            confidence_threshold = st.slider("Confidence Threshold", 0.1, 0.5, 0.3, 0.05,
+                                           help="Lower values trigger enhanced search more often")
+    
     # Main chat interface
     col1, col2 = st.columns([4, 1])
     
@@ -330,11 +495,15 @@ def main():
                         with cols[3]:
                             st.caption(f"📊 {metadata['tokens_used']} tokens")
                 
-                # Show sources
+                # Show sources with search type indicators
                 if "sources" in message and message["sources"]:
                     with st.expander("📖 Sources", expanded=False):
                         for i, source in enumerate(message["sources"][:3]):
-                            st.markdown(f"**📄 {source['source']}** (Relevance: {source['similarity']:.1%})")
+                            # Source type indicator
+                            source_icon = "⚡" if source.get('source_type') == 'preprocessed' else "📄"
+                            source_label = "Fast" if source.get('source_type') == 'preprocessed' else "Enhanced"
+                            
+                            st.markdown(f"{source_icon} **{source['source']}** (Relevance: {source['similarity']:.1%}) - *{source_label}*")
                             st.caption(source['text'][:300] + ("..." if len(source['text']) > 300 else ""))
                             if i < len(message["sources"]) - 1:
                                 st.divider()
@@ -348,9 +517,10 @@ def main():
         st.session_state.messages.append({"role": "user", "content": prompt})
         
         # Generate response
-        with st.spinner("Searching documentation and generating answer..."):
+        search_spinner_text = "🔍 Searching documentation..." if not use_hybrid else "🔍 Smart searching (fast + enhanced)..."
+        with st.spinner(search_spinner_text):
             # Search for relevant chunks
-            search_results = search_documents(prompt, kb_data, max_results=5)
+            search_results = search_documents(prompt, kb_data, max_results=5, use_hybrid=use_hybrid, confidence_threshold=confidence_threshold)
             
             if search_results:
                 # Combine context from top results
@@ -384,9 +554,10 @@ def main():
         st.session_state.messages.append({"role": "user", "content": prompt})
         
         # Generate response
-        with st.spinner("Searching documentation and generating answer..."):
+        search_spinner_text = "🔍 Searching documentation..." if not use_hybrid else "🔍 Smart searching (fast + enhanced)..."
+        with st.spinner(search_spinner_text):
             # Search for relevant chunks
-            search_results = search_documents(prompt, kb_data, max_results=5)
+            search_results = search_documents(prompt, kb_data, max_results=5, use_hybrid=use_hybrid, confidence_threshold=confidence_threshold)
             
             if search_results:
                 # Combine context from top results
@@ -429,12 +600,23 @@ def main():
         with st.expander("📊 Performance Stats"):
             st.metric("Load Time", "⚡ Instant")
             st.metric("Questions Asked", len([m for m in st.session_state.messages if m["role"] == "user"]))
+            
+            # Search mode status
+            live_pdf_dir = "knowledge_base"
+            has_live_pdfs = os.path.exists(live_pdf_dir) and len(glob.glob(os.path.join(live_pdf_dir, "**/*.pdf"), recursive=True)) > 0
+            search_mode = "🔄 Hybrid" if (use_hybrid and has_live_pdfs) else "⚡ Fast Only"
+            st.caption(f"**Search Mode:** {search_mode}")
+            
             status = "🟢 Ready" if is_model_available() else "🔴 API Issue"
-            st.caption(f"**Status:** {status}")
+            st.caption(f"**API Status:** {status}")
             
             if kb_data:
                 kb_time = datetime.fromisoformat(kb_data['metadata']['processed_at'])
                 st.caption(f"**KB Updated:** {kb_time.strftime('%m/%d/%Y')}")
+                
+            # Enhanced search indicator
+            if use_hybrid and has_live_pdfs:
+                st.caption(f"**Enhanced Trigger:** {confidence_threshold:.1%} confidence")
 
 if __name__ == "__main__":
     main()
