@@ -1,0 +1,357 @@
+{
+  "chunks": [
+    {
+      "id": "ALL Voice Commands Template.pdf_chunk_0",
+      "filename": "ALL Voice Commands Template.pdf",
+      "chunk_index": 0,
+      "text": "Fluency For Imaging Voice Command Supported Action Without Pausing Selection Commands Select <Word Sequence> Selects a group of words you dictate (limit 5), including punctuation Select <word> through Select the text beginning with the first word spoken through the <word> last word spoken Select all Select all text in the entire document Select current sentence / Selects the entire sentence, paragraph or list item in which the paragraph / list item cursor is currently located Select next sentence / Select the entire next sentence or paragraph paragraph Select previous sentence / Select the entire previous sentence or paragraph paragraph Deletion Commands Delete Selection Deletes currently selected content Delete current sentence / list Deletes the entire sentence or list item in which the cursor is item currently located Delete next sentence / list Deletes the next sentence or list item (located to the right of the item cursor), if existing Delete previous sentence / list Deletes the previous sentence or list, item (located to the left of item the cursor), if existing Scratch that √ Deletes the dictated content back to the last punctuation Undo Commands Undo that Undo last command spoken Navigation Commands Insert after <word> Places the cursor after the given word in insert mode Insert after <word sequence> Places the cursor after the given words in insert mode Insert before <word> Places the cursor before the given word in insert mode Insert before <word Places the cursor before the given words in insert mode sequence> Next section √ Places the cursor at the end of the next section in the document Previous setion √ Places the cursor at the end of the previous section in the document Go to beginning of sentence / Places the cursor at the beginning of the current sentence, paragraph / list paragraph, or list Go to end of sentence / Places the cursor at the end of the current sentence, paragraph, paragraph / list or list Go to <fieldname> √ Places the cursor at the specified field Fluency For Imaging Editing Commands toggle section/subsection Toggle the current selection between regular text and a section/subsection next paragraph / line √ Start selected text on a new paragraph/line or create a new paragraph/line at the current cursor position toggle case Toggles the case of the selection between Title, UPPERCASE, and lowercase lowercase / no caps selection Turns the current selection into lowercased text lowercase / no caps <n> Lowercases the sequence of words to the right of the current words cursor position lowercase / no caps previous Lowercases the sequence of words to the left of the current <n> words cursor position uppercase / all caps selection Turns the current selection into UPPERCASED text uppercase / all caps next <n> UPPERCASES the sequence of words to the right of the current words cursor position uppercase / all caps previous UPPERCASES the sequence of words to the left of the current <n> words cursor position all caps on √ Toggles caps lock on all caps off √ Toggles caps lock off Field Commands <field cue> Selects the field that matches the given cue next field √ Positions the cursor in the next field (relative to current cursor position) previous field √ Positions the cursor in the previous field (relative to current cursor position) first field √ Positions the cursor in the first field in the document last field √ Positions the cursor in the last field in the document List Commands new list √ Creates the first bullet of a new, undordered list (bulleted list) Item number one √ Starts a new, ordered (numbered) list next item √ Creates the next item in a list (for both ordered and unordered lists) last field √ Ends the list and starts a new paragraph Fluency For Imaging Fluency Reporting Workflow Commands create template Opens the template editor loaded with a new template based on the current draft find template Launches the Find Template window launch template <template √ Loads the specified template based on the template name name> launch template <#> √ Loads the specified template based on the template number create macro Creates a macro based on the current selection insert <macro name> √ Inserts the specified macro (by name) at the location of the cursor Insert macro <#> √ Inserts the specified macro (by index) at the location of the cursor find macro Launches the Find Macro window edit macro Launches the Edit Macro window for the selected macro delete macro Deletes the selected macro check spelling Launches Spellchecker on the current dictation save draft Saves the current dictation as a draft sign report Signs the report and closes images assign report Allows a resident to assign a report to a staff radiologist send to transcription Launches transcriptionist options; from here the user can add notes and then use the voice commands \"Send Routine,\" Send STAT,\" or \"Cancel\" preview report Shows the HTML version of the Fluency report in a new popup window Insert token Brings up the insert token dialog box"
+    },
+    {
+      "id": "Best Practice Dictation.pdf_chunk_0",
+      "filename": "Best Practice Dictation.pdf",
+      "chunk_index": 0,
+      "text": "Fluency For Imaging Dictation Best Practices • When dictating, keep your recording device (handheld, gooseneck, headset, etc. ) at a steady distance from your mouth to avoid fluctuations in audio quality. • Before you begin and end a recording, take a brief pause to ensure no words are cut off at the start or end. • Fluency for Imaging is optimized for various dictation environments, but it’s best to dictate in a quiet space with minimal background noise, including music"
+    },
+    {
+      "id": "Best Practice Dictation.pdf_chunk_1",
+      "filename": "Best Practice Dictation.pdf",
+      "chunk_index": 1,
+      "text": "minimal background noise, including music. If you find yourself in a noisy setting or switching between different environments (from loud to quiet), be sure to recalibrate your microphone using the Microphone Wizard function. • Ensure you speak clearly in full sentences with punctuation, keeping a steady pace without over-enunciating or varying your speed too much"
+    },
+    {
+      "id": "Best Practice Dictation.pdf_chunk_2",
+      "filename": "Best Practice Dictation.pdf",
+      "chunk_index": 2,
+      "text": "varying your speed too much. • Configure the speech mic to beep when recording starts and stops to ensure a clear understanding of when recording is active or inactive. Additionally, press only one button at a time on your handheld recording device. • Other fundamental practices include turning off the recording while taking phone calls and refraining from shouting into the speech mic during any interruptions"
+    },
+    {
+      "id": "FFI Radiologists Training Checklist.pdf_chunk_0",
+      "filename": "FFI Radiologists Training Checklist.pdf",
+      "chunk_index": 0,
+      "text": "Fluency For Imaging Radiologist Training Checklist Fluency Job Worklist (Advanced Search) Active Jobs – Launch Selected (Draft, Transcription, Corrected) ☐ Assigned Pools – Any studies assigned to the Dr ☐ Completed jobs – Shows the Dr the list of completed (Signed reports) ☐ Orders List – Shows all studies available to be reported ☐ Citical Findings – Only if Package has been added ☐ Peer Review – Only if Package has been added ☐ Fluency Settings Logging In – Launches through the RIS/PACS/Workflow Orchestrator ☐ Keep Fluency on Top – Always launches on top of every other application ☐ Microphone Wizard – Before any dictation or any change in background noise ☐ Update Prefrences - SpeechMike Set up (Settings) ☐ Manage my Templates – Can be accessed without being in the dictation window ☐ Manage my Macros - Can be accessed without being in the dictation window ☐ Help – User guide documents ☐ Send Feedback – Any issues that need to be logged with our speech team ☐ Prefrences General Preferences – Dark/Light appearance ☐ Device Settings – Toggle on, Toggle Off ☐ Field Navigation – Forward and Rewind buttons for field navigation ☐ SpeechMike mapping buttons – Any additional buttons mapped ☐ Editor Preferences – Appearance, Formatting, Navigation, Highlighting, Templates ☐ Exam Preferences – Associate exams ☐ Recording Preferences – Audio playback ☐ Actions Sign Report – Sign report once completed and ready for verification ☐ Assign – Fellow/Registrar to Consultant (Reported by/Co-reported by) Save Draft & Return to Jobs list – How to Save a Draft and where the job sits ☐ Preview – This will show an example of how the report looks before sign off ☐ Overead – This is a Second opinion workflow (Two signatures will appear) ☐ Send to Transcription - Once dictated and ready to send to the typist ☐ Addendums Workflow - Launch a signed report and show addendum layout ☐ Fluency For Imaging Fluency Dictation Window Patient Demographics ☐ Exams – Associated Exams ☐ Voice Commands – Hover over icons for command ☐ Dictation – Within the reporting window ☐ Dictionary Added Words - How to train words ☐ Excluded Words – How to exclude words from the dictionary that the Dr’s wont use ☐ Replacement Rules – How to replace a word with a word you want it replacing with ☐ Training words correctly – Highlight speak over x 3"
+    },
+    {
+      "id": "FFI Radiologists Training Checklist.pdf_chunk_1",
+      "filename": "FFI Radiologists Training Checklist.pdf",
+      "chunk_index": 1,
+      "text": "Highlight speak over x 3. Record when when option is red ☐ Reporting Sign Report – Sign report once completed and ready for verification ☐ Undo Sign – Allows report to be relaunched after final signature Send to Transcription – Once dictated and ready to send to the typist ☐ Changing a Priority – Changing from Routine to Urgent for Transcription ☐ Send or Overead – This is a Second opinion workflow (Two signatures will appear) ☐ Addendums Workflow - Launch a signed report and show addendum layout ☐ Macros and Templates Editing Macros and Templates Create from Draft – Pull in a dictation to create a template ☐ Find Templates – Search for users templates ☐ Manage Templates – Edit/Delete templates ☐ Inserting Macros – Inseting a macro into a template Find Macros – Search for users macros ☐ Create Macros – How to copy and paste txt to crete a macro ☐ Manage Macros – Edit/Delete macros ☐ Associate Templates/Macro – Modality/Body part or procedure code mapping ☐ Voice Cue – Create pick lists within a template ☐ Tokens – Show displayed token list and add appropiately to template ☐ Fill-In Fields – [] on keyboard"
+    },
+    {
+      "id": "FFI Radiologists Training Checklist.pdf_chunk_2",
+      "filename": "FFI Radiologists Training Checklist.pdf",
+      "chunk_index": 2,
+      "text": "Fields – [] on keyboard. Text within a field ☐ Fluency For Imaging Trainers Notes Observations and Feedback Recognition Microphone Set Up Performance Productivity Any Other Feedback"
+    },
+    {
+      "id": "Initial Microphone Set Up.pdf_chunk_0",
+      "filename": "Initial Microphone Set Up.pdf",
+      "chunk_index": 0,
+      "text": "Fluency For Imaging Microphone Set up Content: • Section 1: Setting up a SpeechMike • Section 2: Calibrating your Microphone • Section 3: Calibrating your Microphone Preferences • Section 4: Troubleshooting Speech Recognition Fluency For Imaging Section 1: Setting up a SpeechMike Step 1: Launch a study from the worklist. In the bottom right corner of the Dictation Window there is an icon of a microphone. Open the icon to confirm FFI has picked up the correct SpeechMike"
+    },
+    {
+      "id": "Initial Microphone Set Up.pdf_chunk_1",
+      "filename": "Initial Microphone Set Up.pdf",
+      "chunk_index": 1,
+      "text": "picked up the correct SpeechMike. Fluency For Imaging Section 2: Calibrating your Microphone Step 1: Click the Settings button from either the Job List toolbar or from the Dictation Window toolbar and select Microphone Wizard. Step 2: Open Microphone Wizard Step 3: Click the Record Button and Read the sample text presented. Use a normal voice, such as you would use to perform a dictation. The audio level will be displayed as the recording occurs"
+    },
+    {
+      "id": "Initial Microphone Set Up.pdf_chunk_2",
+      "filename": "Initial Microphone Set Up.pdf",
+      "chunk_index": 2,
+      "text": "displayed as the recording occurs. The words will become highlighted in blue as you read the script. Step 4: Click Save when you are done reading to complete the microphone configuration. Fluency For Imaging Section 3: Calibrating your Microphone Preferences Step 1: Click the Settings button from either the Job List toolbar or from the Dictation Window toolbar. Step 2: Select Update Preferences. Step 3: Select Device and adjust any Microphone settings to your personal preferences"
+    },
+    {
+      "id": "Initial Microphone Set Up.pdf_chunk_3",
+      "filename": "Initial Microphone Set Up.pdf",
+      "chunk_index": 3,
+      "text": "settings to your personal preferences. Hold to Talk or Toggle to Talk can also be selected in this section. Select Save and Close when a preference has been selected. Fluency For Imaging Recommended Default SpeechMike Setup: This is a diagram that displays the recommended SpeechMike set by Solventum. Fluency For Imaging Section 4: Troubleshooting Speech Recognition First Steps to Troubleshooting Bad Speech Recognition: Step 1: Recalibrate your microphone using the Microphone Wizard"
+    },
+    {
+      "id": "Initial Microphone Set Up.pdf_chunk_4",
+      "filename": "Initial Microphone Set Up.pdf",
+      "chunk_index": 4,
+      "text": "microphone using the Microphone Wizard. Step 2: When there is a change in your dictation environment (e. g. going from a quiet to a loud environment), make sure to recalibrate your microphone. Step 3: Do not allow others to dictate using your own voice profile Step 4: Check the microphone privacy settings are switched to the Off position. These can be found in Privacy Settings on your PC"
+    },
+    {
+      "id": "Initial Microphone Set Up.pdf_chunk_5",
+      "filename": "Initial Microphone Set Up.pdf",
+      "chunk_index": 5,
+      "text": "Privacy Settings on your PC. Fluency For Imaging Step 5: Check the Microphone volume settings are at the 70% level in sounds and settings on your PC. Step 6: If you are still experiencing speech recognition issues, make sure to reach out to support or your adoption specialist"
+    },
+    {
+      "id": "Recommended Devices.pdf_chunk_0",
+      "filename": "Recommended Devices.pdf",
+      "chunk_index": 0,
+      "text": "Suggested Recording Devices Current Supported/Production Devices Philips SpeechMikes (Wired) Philips SpeechMikes (Wireless) These devices are recommended for use with the FFI Reporting Client: • LFH3000 SpeechMike Air • LFH3005 SpeechMike Air • LFH3200 SpeechMike III • LFH3010 SpeechMike Air • LFH3210 SpeechMike III • PSM6500 SpeechOne • LFH3500 SpeechMike Premium • PSM6300 SpeechOne • LFH3510 SpeechMike Premium (w/slide switch) • ACC6000 SpeechOne • SMP3700 SpeechMike Premium Touch • ACC6100 SpeechOne • SMP3710 SpeechMike Premium Touch • SMP3800 SpeechMike Premium Touch Barcode Scanner • SMP3810 SpeechMike Premium Touch Barcode Scanner • SMP4000 SpeechMike Premium Air • SMP4010 SpeechMike Premium Air These SpeechMikes are designated \"end of life,\" but are still supported by Philips: • LH3205 SpeechMike III • LH3215 SpeechMike III • LH3220 SpeechMike III • LH3225 SpeechMike III • LFH3200 SpeechMike - Barcode Scanner • LFH3600 SpeechMike Premium - Barcode Scanner • LFH3610 SpeechMike Premium - Barcode Scanner Current Supported/Production Devices Headsets Jabra headsets • Andrea Electronics NC-181VM USB • Jabra Evolve 20 • Andrea Electronics NC-185VM USB • Jabra Evolve 30 II USB • Andrea Electronics NC-250V • Jabra Evolve 40 • Plantronics Audio 310 + USB Adaptor • Jabra Evolve2 40 • Plantronics Audio DSP 300 USB - (No longer manufactured) • Jabra Evolve 65 • Plantronics Audio DSP 400 USB • Jabra Evolve 65+ • Plantronics Audio DSP 500 USB • Jabra Evolove2 65 Flex Duo • Plantronics Audio 678 USB • Jabra Engage 65 • Plantronics Audio 655 USB • Jabra Engage 75 • Plantronics Audio 648 USB • Plantronics Audio DSP 626 USB Philips headsets • Plantronics Audio 628 USB • Plantronics Audio DSP 626 USB - (No longer manufactured) • Philips PSM-6300 SpeechOne Wireless • Plantronics Audio 610 + USB Adaptor • Philips PSM-6500 SpeechOne + Remote Control • Plantronics Blackwire C710 via USB • Plantronics Blackwire C710-M via USB • Plantronics Blackwire C720 via USB • Plantronics Blackwire C720-M via USB • Plantronics Blackwire 725 Current Supported/Production Devices Wireless Headsets Gooseneck Microphones • Andrea Electronics BT-201 • Buddy GooseneckMic 7G USB • Jawbone ERA • Buddy GooseneckMic 7G USB + Footpedal • Plantronics Voyager Legend UC • Buddy GooseneckMic 3"
+    },
+    {
+      "id": "Recommended Devices.pdf_chunk_1",
+      "filename": "Recommended Devices.pdf",
+      "chunk_index": 1,
+      "text": "UC • Buddy GooseneckMic 3. 5mm Analog • Plantronics M50 • Buddy GooseneckMic 3"
+    },
+    {
+      "id": "Recommended Devices.pdf_chunk_2",
+      "filename": "Recommended Devices.pdf",
+      "chunk_index": 2,
+      "text": "M50 • Buddy GooseneckMic 3. 5mm Analog + Footpedal • Plantronics Savi W410-M • SoundTech GN-USB Professional Gooseneck Microphone • Plantronics Savi W420-M • SoundTech GN-USB Professional Gooseneck Microphone + Footpedal • Plantronics Savi W430-M • Plantronics Savi W440-M • Plantronics Savi W445-M Foot pedal devices Solventum does not certify any specific foot pedal currently, but has had success with the following in informal testing: • Infinity IN-DVIUSB Infinity USB -1 • Infinity USB -2 • Philips ACC 2320 • Philips ACC 2330 • Philips LFH"
+    },
+    {
+      "id": "Template Mapping.pdf_chunk_0",
+      "filename": "Template Mapping.pdf",
+      "chunk_index": 0,
+      "text": "Fluency For Imaging Template Mapping •Allocate body parts such as Head, Neck, Chest, Abdomen, Pelvis, Lower Extremity, Upper Extremity, Spine, Whole Body. •Allocate modalities such as XR, CT, BMD, MR, MAM, NM, PET, FLU, US, EOS. •Everything from mid femur down is Lower Extremity. •Everything from where the collar bone meets the breastbone to the tip of the fingers is Upper Extremity. •All oncology staging scans (e. g"
+    },
+    {
+      "id": "Template Mapping.pdf_chunk_1",
+      "filename": "Template Mapping.pdf",
+      "chunk_index": 1,
+      "text": "oncology staging scans (e. g. CT Chest Abdomen Pelvis +/- Head +/- Neck; PSMA PET, NM Bone Scan, PET Melanoma etc. ) fall under Whole Body. CT/XR full body for multiple myeloma, radiation oncology planning, EOS scans, BMD/DEXA scans, etc also falls under Whole Body part. Essentially, anything that covers half or more of the body goes under Whole Body. •For scans that are agnostic to specific body parts, you can have a separate MISC body part"
+    },
+    {
+      "id": "Template Mapping.pdf_chunk_2",
+      "filename": "Template Mapping.pdf",
+      "chunk_index": 2,
+      "text": "a separate MISC body part. •Will there be reports that are attached to multiple accession numbers? E. g. reports for CT Chest and X-ray Left Hand? •Have strong internal documentation of these decisions so that the ECD can evolve over time in a consistent manner, allowing rads to have strong trust that the right templates and macros will always show up for the right exams as exam codes change over time"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_0",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 0,
+      "text": "Templates and Macros Creating Personal Templates Creating Templates Radiologists can create personal templates from a draft or manage them directly. Templates serve as a starting point for new documents and can include sections, subsections, fields, and tokens. They can be accessed from the Templates section on the right side of the document. Personal Templates: Available personal templates are displayed in the Templates section on the right side of the document"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_1",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 1,
+      "text": "right side of the document. Users can search, create, edit, or delete personal templates using the Template Manager. Creating from Draft Radiologists can create templates based on the current exam by clicking \"Create from Draft. \" This allows for the customisation of templates to suit specific reporting needs. Step 1 – When a report has been dictated and you would like to create a template using the current dictation select “Create from Draft” under the Template menu"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_2",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 2,
+      "text": "Draft” under the Template menu. Creating from Draft Step 2 - The Template editor will launch automatically submitting your full report contents into the editor. This includes the procedure code mapping. Step 3 - Make any changes/edits to your template. Give your template a name (In lowercase) and select Save. Creating a New Template Radiologists can create new templates directly from the “Manage my Templates” section"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_3",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 3,
+      "text": "the “Manage my Templates” section. This method allows them to create templates from scratch without starting from an existing draft. A new template created through the fluency settings option under “Manage My Templates”. Alternately the Radiologists can select “Manage” under the Templates menu. Creating a New Template This will launch the Template Manager. Your Template editor will appear. All subsection headings Step 1 – Select Create a new Template"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_4",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 4,
+      "text": "Select Create a new Template. along with fill-in fields are populated within the Template Editor. Creating a New Template Step 2 – Create your new template, this can be either dictated using VR or typed into the Template Editor. Name the template (lowercase) and select save once the template is created. You can associate any template to Modality/Body Part or a Procedure code. This will now appear in your list of personal templates"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_5",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 5,
+      "text": "your list of personal templates. Finding Templates The Template section displays a list of templates relevant to the exam. If a desired template is not shown, it can be searched for using the Find Template feature or voice commands. Filters can be adjusted to view templates created by others. Macros can be found and inserted using the Find Macros option. Step 1 – Under the template menu you have the option to Step 2 – Find Template Editor will launch"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_6",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 6,
+      "text": "Find Template Editor will launch. Filter Owner, Modality and Body Part as search and copy appropriate templates. Select “Find” in the required and select Search. This will display all relevant templates. template menu. Step 3 – Select the template you would like to use. You can copy the template to your personal templates by selecting this in the bottom left corner. Then select Insert this will insert the selected The new template is now displayed in the template into your report"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_7",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 7,
+      "text": "the template into your report. report and added to your Personal Templates. Managing Your Templates Can also be used to Edit or Delete any Personal Templates. Step 1 – Select the “Manage” option within Step 2 – The Personal Template Manager will Launch. This will show all your current personal the Templates Menu. templates, mappings and actions to Edit or Delete your templates. Managing Your Templates Step 3 - Select edit to make any changes, add tokens and/or add macros to your templates"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_8",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 8,
+      "text": "add macros to your templates. Making sure any changes or edits are then saved before the Template editor is closed. Template Best Practices Template Mapping: Use procedure code mapping to ensure the correct template will launch. If multiple templates are mapped to the same procedure code, be sure to select a default template for that procedure code. Use modality/body part for a more generalised template mapping"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_9",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 9,
+      "text": "a more generalised template mapping. Templates mapped this way will launch alphabetically so the default template would be the one whose naming convention is first in the alphabet. For example, if you have 2 templates mapped to MR modality and shoulder body part, one named MRIShoulderDegenerative and the other named Shoulder MRI Normal; the MRI Shoulder Degenerative would be the default template"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_10",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 10,
+      "text": "would be the default template. Template Best Practices Navigational Fields [] The Navigational fields can be found using the brackets keys on your keyboard. [] Template Best Practices Token Fields Token fields pull in data sent across in the HL7 order feed. These fields allow the Radiologist to skip them as the content is filled in for them, saving the Radiologist from having to navigate to and from that field. These fields can be edited if needed"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_11",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 11,
+      "text": "can be edited if needed. Token fields appear with pink highlighted brackets, i. e. [Reason for Exam]. These are highlighted to distinguish the difference between a standard field and voice-activated field. Step 1 – Within the Template Editor, the pink template Step 2 – Select from the available tokens list and submit. This token will now appear button can be selected to create a token field. in the report as a token field. The HL7 data mapped to that token will appear in your report automatically"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_12",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 12,
+      "text": "appear in your report automatically. Template Best Practices Voice Activated Fields Voice Activated Fields provide multiple functionalities for the Radiologist to include: Voices Cues allow the Radiologist to navigate directly to this field by speaking the voice cue name. Pick Lists provide options for the Radiologist to select multiple options from within the field. Step 1 – Within the Template Editor, the teal voice activated button can be selected to create a voice activated field"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_13",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 13,
+      "text": "create a voice activated field. Step 2 – In the Field Voice Cue type in a name you Step 3 – A field choice can be a default choice. This will automatically Step 4 – The pick list will display on the can use to identify that field when dictating. always load in the selected field. right side of your dictation window. Once When adding additional field choices, type the text into the field text, you are within the field your choices will be Select Field Choices to create your pick list. select add"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_14",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 14,
+      "text": "your pick list. select add. This will create a pick list within your report. displayed for you to select. Macros Macros are snippets of text that can be inserted into reports using voice commands or selecting within the Macro menu Macro Content: To create a macro, users can edit the content of the macro using text, fields, and tokens. This allows for the customization of reusable text snippets to streamline reporting processes"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_15",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 15,
+      "text": "snippets to streamline reporting processes. Macro Name: Users are advised to create a unique name for the macro to ensure the insert command works effectively. Inserting Macros: Macros can be inserted into documents using voice commands or by double-clicking. They provide a quick and efficient way to insert predefined text snippets into reports, enhancing productivity in radiology reporting. Macros Step 1 – Select “Manage” in the Macro menu"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_16",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 16,
+      "text": "“Manage” in the Macro menu. Step 2 – The Personal Macro Manager will launch providing user the ability to create, edit or delete macros. Select Save after any changes. Association with Modalities and Body Parts: Macros can be associated with specific modalities and body parts, allowing for targeted insertion of text snippets based on the context of the report"
+    },
+    {
+      "id": "Templates and Macros .pdf_chunk_17",
+      "filename": "Templates and Macros .pdf",
+      "chunk_index": 17,
+      "text": "the context of the report. Efficient Reporting: The use of macros contributes to efficient reporting by enabling radiologists to insert frequently used text with ease"
+    },
+    {
+      "id": "Templates and Macros Gender and Age.pdf_chunk_0",
+      "filename": "Templates and Macros Gender and Age.pdf",
+      "chunk_index": 0,
+      "text": "Fluency For Imaging Templates and Macros by Age and/or Gender Templates Age and/or Gender Templates can be created by patient gender and/or age. Templates Age and/or Gender Templates by Age Templates can be created by patient age. Once the template is saved it will show in your Add in an age range within the template editor. template manager with an Age Range as below. Templates Age and/or Gender Templates by Age When a study is launched in the reporting window"
+    },
+    {
+      "id": "Templates and Macros Gender and Age.pdf_chunk_1",
+      "filename": "Templates and Macros Gender and Age.pdf",
+      "chunk_index": 1,
+      "text": "launched in the reporting window. The template listed will be the age matched in the patient demographics and will be available to use in your personal templates displayed in the right of your reporting screen. Templates Age and/or Gender Templates by Gender Templates can be created by patient gender. Once the template is saved it will show in your template manager as below. Templates Age and/or Gender Templates by Gender When a study is launched in the reporting window"
+    },
+    {
+      "id": "Templates and Macros Gender and Age.pdf_chunk_2",
+      "filename": "Templates and Macros Gender and Age.pdf",
+      "chunk_index": 2,
+      "text": "launched in the reporting window. The template listed will be the gender matched in the patient demographics"
+    },
+    {
+      "id": "Vocabulary Editor.pdf_chunk_0",
+      "filename": "Vocabulary Editor.pdf",
+      "chunk_index": 0,
+      "text": "Fluency For Imaging Vocabulary Editing Best practice for self-editing and correcting misrecognised words within Fluency For Imaging 1. Immediate Correction: When you notice a misrecognised word, immediately correct it by highlighting the incorrect word and either redictating the correct word or typing it in. 2. Fluency: Maintain fluency in your dictation. Don't pause excessively or speak too quickly. A consistent, moderate pace helps the system recognize speech patterns more accurately. 3"
+    },
+    {
+      "id": "Vocabulary Editor.pdf_chunk_1",
+      "filename": "Vocabulary Editor.pdf",
+      "chunk_index": 1,
+      "text": "speech patterns more accurately. 3. Learning After Finalisation: The system learns from the corrections you make after finalizing a report. It may take 3-4 attempts for the system to learn from these corrections, so be patient and consistent with your editing. 4. Persistent Misrecognition: If a word continues to be misrecognized despite your corrections, use the \"Edit My Vocabulary\" feature to add the word to the system's vocabulary. This can help improve recognition in future dictations. 5"
+    },
+    {
+      "id": "Vocabulary Editor.pdf_chunk_2",
+      "filename": "Vocabulary Editor.pdf",
+      "chunk_index": 2,
+      "text": "recognition in future dictations. 5. Replacement Rules: Create replacement rules for words that are frequently misrecognized. This can help automate the correction process for common errors. 6. Feedback: If persistent misrecognition issues are not resolved through the above steps, send feedback to the system administrators. They may be able to address system-wide issues or provide additional support. 7. Avoid Over-Editing: Don't over-edit minor issues that don't affect the meaning of the text"
+    },
+    {
+      "id": "Vocabulary Editor.pdf_chunk_3",
+      "filename": "Vocabulary Editor.pdf",
+      "chunk_index": 3,
+      "text": "the meaning of the text. This can disrupt the natural flow of dictation and may not be necessary for the final document. 8. Review and Proofread: Always review and proofread the final document to ensure accuracy. Even with the best speech recognition technology, human oversight is crucial for catching nuances and errors that the system may miss"
+    },
+    {
+      "id": "Vocabulary Editor.pdf_chunk_4",
+      "filename": "Vocabulary Editor.pdf",
+      "chunk_index": 4,
+      "text": "that the system may miss. To improve the system's recognition of words, you can follow these steps: Step 1 - Add Words to the Vocabulary Click the Settings button on the Dictation window toolbar and choose \"Edit my Vocabulary. \" Then, select the \"Added words\" button and click “Add/Train” To improve the system's recognition of words, you can follow these steps: Step 2 – Type and Record Pronunciation Type the word you want to add in the field provided"
+    },
+    {
+      "id": "Vocabulary Editor.pdf_chunk_5",
+      "filename": "Vocabulary Editor.pdf",
+      "chunk_index": 5,
+      "text": "add in the field provided. Assign a Category: Select the appropriate word category (Name, Location, Medication, or Other) for the word you've added. To enhance recognition, click \"Record Pronunciation\" and speak the word into your SpeechMike when the button turns red. Wait for it to turn grey again to confirm the pronunciation has been recorded. Click \"Save\" to add the word to your vocabulary list"
+    },
+    {
+      "id": "Vocabulary Editor.pdf_chunk_6",
+      "filename": "Vocabulary Editor.pdf",
+      "chunk_index": 6,
+      "text": "word to your vocabulary list. Replacement Rules Replacement Rules can be created to help improve the user experience by transforming certain phrases or words into a more suitable format. For example, using abbreviations for the full spoken word. Step 1 – Adding in Replacement Rules. Click the Settings button on the Dictation window toolbar and choose \"Edit my Vocabulary. \" Then, select the “Replacement Rules\" button and click \"Add/Train. “ Replacement Rules Step 2 – Adding in the Original word"
+    },
+    {
+      "id": "Vocabulary Editor.pdf_chunk_7",
+      "filename": "Vocabulary Editor.pdf",
+      "chunk_index": 7,
+      "text": "Adding in the Original word. Enter the spoken form into the Original Word field (eg WBC). Step 3 – Adding in the Replacement word. Enter the word you would like to be displayed in the report in the Replace with field (e. g. white blood cells). Step 4 – Select Save. This replacement rule will now be added to your personal dictionary. Do’s and Don'ts for Adding Words DO add the doctor's surname only, unless the given name is unique. DO add only the misrecognized word in a phrase. DON'T add \"Dr"
+    },
+    {
+      "id": "Vocabulary Editor.pdf_chunk_8",
+      "filename": "Vocabulary Editor.pdf",
+      "chunk_index": 8,
+      "text": "a phrase. DON'T add \"Dr. \" before the doctor's name. If there are issues with recognition for these, use the \"Send Feedback\" feature. By following these guidelines, you can help the system learn and recognize specific words more accurately, leading to improved dictation and transcription results"
+    }
+  ],
+  "documents": [
+    {
+      "filename": "ALL Voice Commands Template.pdf",
+      "text_length": 5018,
+      "chunk_count": 1,
+      "processed_at": "2025-08-11T20:06:20.506302"
+    },
+    {
+      "filename": "Best Practice Dictation.pdf",
+      "text_length": 1185,
+      "chunk_count": 3,
+      "processed_at": "2025-08-11T20:06:20.538139"
+    },
+    {
+      "filename": "FFI Radiologists Training Checklist.pdf",
+      "text_length": 3596,
+      "chunk_count": 3,
+      "processed_at": "2025-08-11T20:06:20.696444"
+    },
+    {
+      "filename": "Initial Microphone Set Up.pdf",
+      "text_length": 2397,
+      "chunk_count": 6,
+      "processed_at": "2025-08-11T20:06:20.800655"
+    },
+    {
+      "filename": "Recommended Devices.pdf",
+      "text_length": 2862,
+      "chunk_count": 3,
+      "processed_at": "2025-08-11T20:06:20.872731"
+    },
+    {
+      "filename": "Template Mapping.pdf",
+      "text_length": 1214,
+      "chunk_count": 3,
+      "processed_at": "2025-08-11T20:06:20.927126"
+    },
+    {
+      "filename": "Templates and Macros .pdf",
+      "text_length": 7337,
+      "chunk_count": 18,
+      "processed_at": "2025-08-11T20:06:21.141722"
+    },
+    {
+      "filename": "Templates and Macros Gender and Age.pdf",
+      "text_length": 989,
+      "chunk_count": 3,
+      "processed_at": "2025-08-11T20:06:21.179771"
+    },
+    {
+      "filename": "Vocabulary Editor.pdf",
+      "text_length": 3753,
+      "chunk_count": 9,
+      "processed_at": "2025-08-11T20:06:21.255548"
+    }
+  ],
+  "processed_at": "2025-08-11T20:06:21.264521",
+  "total_chunks": 49,
+  "total_documents": 9
+}
