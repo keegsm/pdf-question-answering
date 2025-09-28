@@ -453,13 +453,22 @@ def main():
     
     # Search mode controls
     with st.expander("🔧 Search Settings", expanded=False):
-        col1, col2 = st.columns(2)
+        col1, col2, col3 = st.columns(3)
         with col1:
             use_hybrid = st.checkbox("🔄 Enhanced Search", value=True, 
                                    help="Uses live PDF analysis for better accuracy when confidence is low")
         with col2:
             confidence_threshold = st.slider("Confidence Threshold", 0.1, 0.5, 0.3, 0.05,
                                            help="Lower values trigger enhanced search more often")
+        with col3:
+            force_full_search = st.checkbox("🚀 Force Full Search", value=False,
+                                           help="Skip fast search entirely and use intensive live PDF analysis for all queries")
+        
+        # Override settings when force full search is enabled
+        if force_full_search:
+            use_hybrid = True  # Force hybrid mode
+            confidence_threshold = 1.0  # Set threshold to max to always trigger enhanced search
+            st.info("🚀 **Full Search Mode Active** - Using intensive live PDF analysis for maximum accuracy")
     
     # Main chat interface
     col1, col2 = st.columns([4, 1])
@@ -515,7 +524,13 @@ def main():
         st.session_state.messages.append({"role": "user", "content": prompt})
         
         # Generate response
-        search_spinner_text = "🔍 Searching documentation..." if not use_hybrid else "🔍 Smart searching (fast + enhanced)..."
+        if force_full_search:
+            search_spinner_text = "🚀 Full search mode - analyzing all PDFs intensively..."
+        elif use_hybrid:
+            search_spinner_text = "🔍 Smart searching (fast + enhanced)..."
+        else:
+            search_spinner_text = "🔍 Searching documentation..."
+        
         with st.spinner(search_spinner_text):
             # Search for relevant chunks with hybrid mode
             search_results = search_documents(prompt, kb_data, max_results=5, use_hybrid=use_hybrid, confidence_threshold=confidence_threshold)
@@ -552,7 +567,13 @@ def main():
         st.session_state.messages.append({"role": "user", "content": prompt})
         
         # Generate response
-        search_spinner_text = "🔍 Searching documentation..." if not use_hybrid else "🔍 Smart searching (fast + enhanced)..."
+        if force_full_search:
+            search_spinner_text = "🚀 Full search mode - analyzing all PDFs intensively..."
+        elif use_hybrid:
+            search_spinner_text = "🔍 Smart searching (fast + enhanced)..."
+        else:
+            search_spinner_text = "🔍 Searching documentation..."
+        
         with st.spinner(search_spinner_text):
             # Search for relevant chunks with hybrid mode
             search_results = search_documents(prompt, kb_data, max_results=5, use_hybrid=use_hybrid, confidence_threshold=confidence_threshold)
@@ -602,7 +623,13 @@ def main():
             # Search mode status
             live_pdf_dir = "knowledge_base_visage"
             has_live_pdfs = os.path.exists(live_pdf_dir) and len(glob.glob(os.path.join(live_pdf_dir, "*.pdf"))) > 0
-            search_mode = "🔄 Hybrid" if (use_hybrid and has_live_pdfs) else "⚡ Fast Only"
+            
+            if force_full_search:
+                search_mode = "🚀 Full Search (Forced)"
+            elif use_hybrid and has_live_pdfs:
+                search_mode = "🔄 Hybrid"
+            else:
+                search_mode = "⚡ Fast Only"
             st.caption(f"**Search Mode:** {search_mode}")
             
             status = "🟢 Ready" if is_model_available() else "🔴 API Issue"
@@ -613,7 +640,9 @@ def main():
                 st.caption(f"**KB Updated:** {kb_time.strftime('%m/%d/%Y')}")
                 
             # Enhanced search indicator
-            if use_hybrid and has_live_pdfs:
+            if force_full_search:
+                st.caption("**Mode:** Full intensive PDF analysis")
+            elif use_hybrid and has_live_pdfs:
                 st.caption(f"**Enhanced Trigger:** {confidence_threshold:.1%} confidence")
 
 if __name__ == "__main__":
