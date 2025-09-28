@@ -43,24 +43,24 @@ class LLMModel:
 # Available LLM Models
 AVAILABLE_MODELS = {
     "groq_llama3_8b": LLMModel(
-        name="Llama 3 8B",
+        name="Llama 3.1 8B Instant",
         provider="Groq",
-        model_id="llama3-8b-8192",
+        model_id="llama-3.1-8b-instant",
         api_url="https://api.groq.com/openai/v1/chat/completions",
         free=True,
         speed="Fast",
         quality="Good",
-        description="Fast, reliable model from Meta"
+        description="Fast, reliable model from Meta (updated)"
     ),
     "groq_llama3_70b": LLMModel(
-        name="Llama 3 70B",
+        name="Llama 3.3 70B Versatile",
         provider="Groq",
-        model_id="llama3-70b-8192",
+        model_id="llama-3.3-70b-versatile",
         api_url="https://api.groq.com/openai/v1/chat/completions",
         free=True,
         speed="Medium",
         quality="Better",
-        description="Larger, more capable Llama model"
+        description="Latest versatile Llama model (updated)"
     ),
     "groq_mixtral": LLMModel(
         name="Mixtral 8x7B",
