@@ -15,12 +15,13 @@ Successfully implemented **dual search architecture** that:
 
 ## 🏗️ Repository Structure
 
-### **Two Separate Domain-Specific Applications**
+### **Three Separate Domain-Specific Applications**
 
 | Branch | Application | Knowledge Base | Target Domain |
 |--------|-------------|----------------|---------------|
 | **main** | Visage PACS Support Hub | `knowledge_base_visage/` | Medical imaging/PACS system |
 | **v0.2-domain-specific** | InteleOrchestrator Support Hub | `knowledge_base/` | Radiology workflow management |
+| **v0.3-speech-to-text** | FFI Support Hub | `knowledge_base_ffi/` | Speech recognition/dictation systems |
 
 ### **Key Files Modified**
 
@@ -34,6 +35,12 @@ Successfully implemented **dual search architecture** that:
 - `streamlit_app_v02_optimized.py` - Enhanced with hybrid search (+213 lines)
 - Knowledge base: `knowledge_base/**/*.pdf` (recursive search)
 - Preprocessed data: `processed_knowledge_base/`
+
+#### v0.3-speech-to-text Branch (FFI Support Hub)
+- `streamlit_app_ffi_optimized.py` - FFI-specific app with hybrid search
+- Knowledge base: `knowledge_base_ffi/*.pdf` (9 FFI documentation PDFs)
+- Preprocessed data: `processed_knowledge_base_ffi/` (49 text chunks)
+- Configuration: `app_config_ffi.json` with voice recognition role examples
 
 ---
 
@@ -142,12 +149,13 @@ def display_knowledge_base_info(kb_data: dict)  # Shows hybrid status
 
 ### **Configuration Differences**
 
-| Feature | Visage PACS | InteleOrchestrator |
-|---------|-------------|-------------------|
-| Knowledge Base | `knowledge_base_visage/` | `knowledge_base/` |
-| PDF Search | Direct files | Recursive `**/*.pdf` |
-| Branding | "Visage PACS Support" | "InteleOrchestrator Support" |
-| Config File | `app_config_visage.json` | `app_config.json` |
+| Feature | Visage PACS | InteleOrchestrator | FFI Support Hub |
+|---------|-------------|-------------------|-----------------|
+| Knowledge Base | `knowledge_base_visage/` | `knowledge_base/` | `knowledge_base_ffi/` |
+| PDF Search | Direct files | Recursive `**/*.pdf` | Direct files |
+| Branding | "Visage PACS Support" | "InteleOrchestrator Support" | "FFI Support Hub" 🎤 |
+| Config File | `app_config_visage.json` | `app_config.json` | `app_config_ffi.json` |
+| Target Users | PACS specialists | Workflow managers | Radiologists/Voice users |
 
 ---
 
@@ -169,12 +177,22 @@ def display_knowledge_base_info(kb_data: dict)  # Shows hybrid status
 - **Files**: `streamlit_app_v02_optimized.py` (+213 lines)
 - **Status**: ✅ Committed locally, ready for push
 
+#### v0.3-speech-to-text Branch (FFI Support Hub)
+- **Commit**: `e56dc07`
+- **Message**: "Add FFI Support Hub with hybrid search system"
+- **Date**: August 11, 2025
+- **Files**: `streamlit_app_ffi_optimized.py`, `app_config_ffi.json`, preprocessing scripts
+- **Knowledge Base**: 9 FFI documentation PDFs with 49 processed chunks
+- **Features**: Voice recognition focus with radiologist, IT support, and training role examples
+- **Status**: ✅ Successfully deployed and launched
+
 ### **Streamlit Deployment**
 
-Both applications should automatically redeploy via Streamlit Cloud when GitHub detects the new commits:
+All three applications auto-deploy via Streamlit Cloud when GitHub detects new commits:
 
 - **Visage PACS**: Deployed from `main` branch
-- **InteleOrchestrator**: Deployed from `v0.2-domain-specific` branch
+- **InteleOrchestrator**: Deployed from `v0.2-domain-specific` branch  
+- **FFI Support Hub**: Deployed from `v0.3-speech-to-text` branch
 
 ---
 
@@ -192,9 +210,10 @@ Both applications should automatically redeploy via Streamlit Cloud when GitHub 
    - Rename to match domain (e.g., `streamlit_app_newdomain_optimized.py`)
 
 3. **Adapt Configuration**
-   - Update knowledge base directory path
+   - Update knowledge base directory path (e.g., `knowledge_base_newdomain/`)
    - Modify app title, branding, and role-based examples
    - Create domain-specific `app_config_newdomain.json`
+   - Define target user roles (follow FFI example: radiologist, IT support, training)
 
 4. **Update Search Parameters**
    - Adjust knowledge base directory in `search_live_pdfs()`
@@ -312,6 +331,17 @@ knowledge_base/                    # InteleOrchestrator PDFs
 knowledge_base_visage/            # Visage PACS PDFs  
 ├── *.pdf                         # Direct PDF files only
 
+knowledge_base_ffi/               # FFI Support PDFs
+├── ALL Voice Commands Template.pdf
+├── Best Practice Dictation.pdf
+├── FFI Radiologists Training Checklist.pdf
+├── Initial Microphone Set Up.pdf
+├── Recommended Devices.pdf
+├── Template Mapping.pdf
+├── Templates and Macros .pdf
+├── Templates and Macros Gender and Age.pdf
+└── Vocabulary Editor.pdf
+
 processed_knowledge_base/         # IO preprocessed data
 ├── processed_chunks.json
 ├── tfidf_vectorizer.pkl
@@ -323,10 +353,16 @@ processed_knowledge_base_visage/  # Visage preprocessed data
 ├── tfidf_vectorizer.pkl  
 ├── tfidf_matrix.npz
 └── metadata.json
+
+processed_knowledge_base_ffi/     # FFI preprocessed data
+├── processed_chunks.json         # 49 text chunks from 9 PDFs
+├── tfidf_vectorizer.pkl  
+├── tfidf_matrix.npz
+└── metadata.json
 ```
 
 ### **Streamlit Deployment**
-- Both apps auto-deploy via GitHub integration
+- All three apps auto-deploy via GitHub integration
 - Monitor deployment status at https://share.streamlit.io/
 - Check logs for any deployment issues
 - Verify environment variables and secrets are configured
@@ -335,6 +371,13 @@ processed_knowledge_base_visage/  # Visage preprocessed data
 
 *This document serves as the definitive reference for the Hybrid Search System implementation. Update this document when making significant changes to maintain accurate project documentation.*
 
-**Last Updated**: Current Implementation
-**Version**: 1.0 - Initial Hybrid Search Deployment
+**Last Updated**: August 11, 2025 - FFI Support Hub Addition
+**Version**: 1.1 - Three-Domain Hybrid Search Implementation
 **Authors**: Development Team with Claude Code Assistant
+
+### **Recent Updates**
+- ✅ **Added FFI Support Hub** (v0.3-speech-to-text branch)
+- ✅ **Voice Recognition Focus** with radiologist dictation workflows
+- ✅ **9 FFI Documentation PDFs** processed into 49 searchable chunks
+- ✅ **Role-Based Examples** for radiologists, IT support, and training users
+- ✅ **Successfully Launched** and deployed to production
