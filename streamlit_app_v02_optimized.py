@@ -25,13 +25,13 @@ import pdfplumber
 def load_app_config():
     """Load app configuration from JSON file"""
     try:
-        with open('app_config.json', 'r') as f:
+        with open('app_config_ffi.json', 'r') as f:
             return json.load(f)
     except FileNotFoundError:
-        st.error("App configuration file not found. Please ensure app_config.json exists.")
+        st.error("App configuration file not found. Please ensure app_config_ffi.json exists.")
         st.stop()
     except json.JSONDecodeError:
-        st.error("Invalid app configuration file. Please check app_config.json format.")
+        st.error("Invalid app configuration file. Please check app_config_ffi.json format.")
         st.stop()
 
 # Load configuration
@@ -175,8 +175,11 @@ def chunk_text_live(text: str, chunk_size: int = 500, overlap: int = 50) -> List
     
     return [chunk for chunk in chunks if len(chunk.strip()) > 50]
 
-def search_live_pdfs(query: str, knowledge_base_dir: str = "knowledge_base", max_results: int = 3) -> List[Dict]:
+def search_live_pdfs(query: str, knowledge_base_dir: str = None, max_results: int = 3) -> List[Dict]:
     """Search original PDFs for enhanced accuracy"""
+    if knowledge_base_dir is None:
+        knowledge_base_dir = config["knowledge_base"]["documents_folder"]
+    
     if not os.path.exists(knowledge_base_dir):
         return []
     
@@ -360,7 +363,7 @@ def display_knowledge_base_info(kb_data: dict):
             
         with col2:
             # Check live PDF availability
-            live_pdf_dir = "knowledge_base"
+            live_pdf_dir = config["knowledge_base"]["documents_folder"]
             live_pdfs = []
             if os.path.exists(live_pdf_dir):
                 live_pdfs = glob.glob(os.path.join(live_pdf_dir, "**/*.pdf"), recursive=True)
@@ -623,7 +626,7 @@ def main():
             st.metric("Questions Asked", len([m for m in st.session_state.messages if m["role"] == "user"]))
             
             # Search mode status
-            live_pdf_dir = "knowledge_base"
+            live_pdf_dir = config["knowledge_base"]["documents_folder"]
             has_live_pdfs = os.path.exists(live_pdf_dir) and len(glob.glob(os.path.join(live_pdf_dir, "**/*.pdf"), recursive=True)) > 0
             
             if force_full_search:
